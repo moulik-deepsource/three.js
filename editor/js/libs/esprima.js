@@ -3378,11 +3378,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.errors = [];
 	        this.tolerant = false;
 	    }
-	    ;
+	    
 	    ErrorHandler.prototype.recordError = function (error) {
 	        this.errors.push(error);
 	    };
-	    ;
+	    
 	    ErrorHandler.prototype.tolerate = function (error) {
 	        if (this.tolerant) {
 	            this.recordError(error);
@@ -3391,7 +3391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw error;
 	        }
 	    };
-	    ;
+	    
 	    ErrorHandler.prototype.constructError = function (msg, column) {
 	        var error = new Error(msg);
 	        try {
@@ -3408,7 +3408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return error;
 	        }
 	    };
-	    ;
+	    
 	    ErrorHandler.prototype.createError = function (index, line, col, description) {
 	        var msg = 'Line ' + line + ': ' + description;
 	        var error = this.constructError(msg, col);
@@ -3417,11 +3417,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        error.description = description;
 	        return error;
 	    };
-	    ;
+	    
 	    ErrorHandler.prototype.throwError = function (index, line, col, description) {
 	        throw this.createError(index, line, col, description);
 	    };
-	    ;
+	    
 	    ErrorHandler.prototype.tolerateError = function (index, line, col, description) {
 	        var error = this.createError(index, line, col, description);
 	        if (this.tolerant) {
@@ -3431,7 +3431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw error;
 	        }
 	    };
-	    ;
+	    
 	    return ErrorHandler;
 	}());
 	exports.ErrorHandler = ErrorHandler;
@@ -3455,7 +3455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Token[Token["Template"] = 10] = "Template";
 	})(exports.Token || (exports.Token = {}));
 	var Token = exports.Token;
-	;
+	
 	exports.TokenName = {};
 	exports.TokenName[Token.BooleanLiteral] = 'Boolean';
 	exports.TokenName[Token.EOF] = '<end>';
@@ -3495,20 +3495,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.lineStart = 0;
 	        this.curlyStack = [];
 	    }
-	    ;
+	    
 	    Scanner.prototype.eof = function () {
 	        return this.index >= this.length;
 	    };
-	    ;
+	    
 	    Scanner.prototype.throwUnexpectedToken = function (message) {
 	        if (message === void 0) { message = messages_1.Messages.UnexpectedTokenIllegal; }
 	        this.errorHandler.throwError(this.index, this.lineNumber, this.index - this.lineStart + 1, message);
 	    };
-	    ;
+	    
 	    Scanner.prototype.tolerateUnexpectedToken = function () {
 	        this.errorHandler.tolerateError(this.index, this.lineNumber, this.index - this.lineStart + 1, messages_1.Messages.UnexpectedTokenIllegal);
 	    };
-	    ;
+	    
 	    // ECMA-262 11.4 Comments
 	    Scanner.prototype.skipSingleLineComment = function (offset) {
 	        var comments;
@@ -3564,7 +3564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return comments;
 	    };
-	    ;
+	    
 	    Scanner.prototype.skipMultiLineComment = function () {
 	        var comments;
 	        var start, loc;
@@ -3631,7 +3631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.tolerateUnexpectedToken();
 	        return comments;
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanComments = function () {
 	        var comments;
 	        if (this.trackComment) {
@@ -3705,7 +3705,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return comments;
 	    };
-	    ;
+	    
 	    // ECMA-262 11.6.2.2 Future Reserved Words
 	    Scanner.prototype.isFutureReservedWord = function (id) {
 	        switch (id) {
@@ -3718,7 +3718,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return false;
 	        }
 	    };
-	    ;
+	    
 	    Scanner.prototype.isStrictModeReservedWord = function (id) {
 	        switch (id) {
 	            case 'implements':
@@ -3735,11 +3735,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return false;
 	        }
 	    };
-	    ;
+	    
 	    Scanner.prototype.isRestrictedWord = function (id) {
 	        return id === 'eval' || id === 'arguments';
 	    };
-	    ;
+	    
 	    // ECMA-262 11.6.2.1 Keywords
 	    Scanner.prototype.isKeyword = function (id) {
 	        switch (id.length) {
@@ -3768,7 +3768,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return false;
 	        }
 	    };
-	    ;
+	    
 	    Scanner.prototype.codePointAt = function (i) {
 	        var cp = this.source.charCodeAt(i);
 	        if (cp >= 0xD800 && cp <= 0xDBFF) {
@@ -3780,7 +3780,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return cp;
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanHexEscape = function (prefix) {
 	        var len = (prefix === 'u') ? 4 : 2;
 	        var code = 0;
@@ -3794,7 +3794,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return String.fromCharCode(code);
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanUnicodeCodePointEscape = function () {
 	        var ch = this.source[this.index];
 	        var code = 0;
@@ -3814,7 +3814,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return character_1.Character.fromCodePoint(code);
 	    };
-	    ;
+	    
 	    Scanner.prototype.getIdentifier = function () {
 	        var start = this.index++;
 	        while (!this.eof()) {
@@ -3838,7 +3838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return this.source.slice(start, this.index);
 	    };
-	    ;
+	    
 	    Scanner.prototype.getComplexIdentifier = function () {
 	        var cp = this.codePointAt(this.index);
 	        var id = character_1.Character.fromCodePoint(cp);
@@ -3894,7 +3894,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return id;
 	    };
-	    ;
+	    
 	    Scanner.prototype.octalToDecimal = function (ch) {
 	        // \0 is not octal escape sequence
 	        var octal = (ch !== '0');
@@ -3913,7 +3913,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            octal: octal
 	        };
 	    };
-	    ;
+	    
 	    // ECMA-262 11.6 Names and Keywords
 	    Scanner.prototype.scanIdentifier = function () {
 	        var type;
@@ -3946,7 +3946,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    // ECMA-262 11.7 Punctuators
 	    Scanner.prototype.scanPunctuator = function () {
 	        var token = {
@@ -4029,7 +4029,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        token.value = str;
 	        return token;
 	    };
-	    ;
+	    
 	    // ECMA-262 11.8.3 Numeric Literals
 	    Scanner.prototype.scanHexLiteral = function (start) {
 	        var number = '';
@@ -4054,7 +4054,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanBinaryLiteral = function (start) {
 	        var number = '';
 	        var ch;
@@ -4085,7 +4085,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanOctalLiteral = function (prefix, start) {
 	        var number = '';
 	        var octal = false;
@@ -4119,7 +4119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.isImplicitOctalLiteral = function () {
 	        // Implicit octal, unless there is a non-octal digit.
 	        // (Annex B.1.1 on Numeric Literals)
@@ -4134,7 +4134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return true;
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanNumericLiteral = function () {
 	        var start = this.index;
 	        var ch = this.source[start];
@@ -4204,7 +4204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    // ECMA-262 11.8.4 String Literals
 	    Scanner.prototype.scanStringLiteral = function () {
 	        var start = this.index;
@@ -4301,7 +4301,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    // ECMA-262 11.8.6 Template Literal Lexical Components
 	    Scanner.prototype.scanTemplate = function () {
 	        var cooked = '';
@@ -4426,7 +4426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    // ECMA-262 11.8.5 Regular Expression Literals
 	    Scanner.prototype.testRegExp = function (pattern, flags) {
 	        // The BMP character to use as a replacement for astral symbols when
@@ -4470,7 +4470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return null;
 	        }
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanRegExpBody = function () {
 	        var ch = this.source[this.index];
 	        assert_1.assert(ch === '/', 'Regular expression literal must start with a slash');
@@ -4516,7 +4516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            literal: str
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanRegExpFlags = function () {
 	        var str = '';
 	        var flags = '';
@@ -4560,7 +4560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            literal: str
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.scanRegExp = function () {
 	        var start = this.index;
 	        var body = this.scanRegExpBody();
@@ -4580,7 +4580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            end: this.index
 	        };
 	    };
-	    ;
+	    
 	    Scanner.prototype.lex = function () {
 	        if (this.eof()) {
 	            return {
@@ -4627,7 +4627,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return this.scanPunctuator();
 	    };
-	    ;
+	    
 	    return Scanner;
 	}());
 	exports.Scanner = Scanner;
@@ -6247,7 +6247,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.values = [];
 	        this.curly = this.paren = -1;
 	    }
-	    ;
+	    
 	    // A function following one of those tokens is an expression.
 	    Reader.prototype.beforeFunctionExpression = function (t) {
 	        return ['(', '{', '[', 'in', 'typeof', 'instanceof', 'new',
@@ -6260,7 +6260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            '|', '^', '!', '~', '&&', '||', '?', ':', '===', '==', '>=',
 	            '<=', '<', '>', '!=', '!=='].indexOf(t) >= 0;
 	    };
-	    ;
+	    
 	    // Determine if forward slash (/) is an operator or part of a regular expression
 	    // https://github.com/mozilla/sweet.js/wiki/design
 	    Reader.prototype.isRegexStart = function () {
@@ -6292,7 +6292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return regex;
 	    };
-	    ;
+	    
 	    Reader.prototype.push = function (token) {
 	        if (token.type === token_1.Token.Punctuator || token.type === token_1.Token.Keyword) {
 	            if (token.value === '{') {
@@ -6307,7 +6307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.values.push(null);
 	        }
 	    };
-	    ;
+	    
 	    return Reader;
 	}());
 	var Tokenizer = (function () {
@@ -6321,11 +6321,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.buffer = [];
 	        this.reader = new Reader();
 	    }
-	    ;
+	    
 	    Tokenizer.prototype.errors = function () {
 	        return this.errorHandler.errors;
 	    };
-	    ;
+	    
 	    Tokenizer.prototype.getNextToken = function () {
 	        if (this.buffer.length === 0) {
 	            var comments = this.scanner.scanComments();
@@ -6389,7 +6389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return this.buffer.shift();
 	    };
-	    ;
+	    
 	    return Tokenizer;
 	}());
 	exports.Tokenizer = Tokenizer;
@@ -6398,4 +6398,3 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ }
 /******/ ])
 });
-;

@@ -351,7 +351,7 @@
     }
 
     if (foundOne) applyType(type, self, args, ret, node, aval);
-  };
+  }
 
   function jsdocParseTypedefs(text, scope) {
     var cx = infer.cx();
@@ -397,5 +397,5 @@
     } else if (type) {
       propagateWithWeight(type, aval);
     }
-  };
+  }
 });

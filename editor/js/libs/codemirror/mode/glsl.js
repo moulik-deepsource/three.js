@@ -220,7 +220,7 @@
     return "meta";
   }
 
-  ;(function() {
+  (function() {
     CodeMirror.defineMIME("text/x-glsl", {
       name: "glsl",
       keywords: words(glslKeywords),

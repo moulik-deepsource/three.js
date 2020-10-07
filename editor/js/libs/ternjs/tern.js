@@ -780,7 +780,7 @@
       }
     }
     return type;
-  };
+  }
 
   function findTypeAt(srv, query, file) {
     var expr = findExpr(file, query), exprName;
