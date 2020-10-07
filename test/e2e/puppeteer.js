@@ -141,7 +141,7 @@ const pup = puppeteer.launch( {
 	/* Loop for each file, with CI parallelism */
 
 	let pageSize, file, attemptProgress;
-	let failedScreenshots = [];
+	const failedScreenshots = [];
 	const isParallel = 'CI' in process.env;
 	const beginId = isParallel ? Math.floor( parseInt( process.env.CI.slice( 0, 1 ) ) * files.length / 4 ) : 0;
 	const endId = isParallel ? Math.floor( ( parseInt( process.env.CI.slice( - 1 ) ) + 1 ) * files.length / 4 ) : files.length;
@@ -188,7 +188,7 @@ const pup = puppeteer.launch( {
 
 					/* Resource timeout */
 
-					let resourcesSize = Math.min( 1, ( pageSize / 1024 / 1024 - pageSizeMinTax ) / pageSizeMaxTax );
+					const resourcesSize = Math.min( 1, ( pageSize / 1024 / 1024 - pageSizeMinTax ) / pageSizeMaxTax );
 					await new Promise( resolve => setTimeout( resolve, networkTax * resourcesSize * attemptProgress ) );
 
 
@@ -198,11 +198,11 @@ const pup = puppeteer.launch( {
 					await new Promise( function ( resolve ) {
 
 						performance._now = performance._now || performance.now;
-						let renderStart = performance._now();
+						const renderStart = performance._now();
 
-						let waitingLoop = setInterval( function () {
+						const waitingLoop = setInterval( function () {
 
-							let renderEcceded = ( performance._now() - renderStart > renderTimeout * attemptProgress );
+							const renderEcceded = ( performance._now() - renderStart > renderTimeout * attemptProgress );
 							if ( window._renderFinished || renderEcceded ) {
 
 								if ( renderEcceded ) {
@@ -246,7 +246,7 @@ const pup = puppeteer.launch( {
 				/* Make screenshots */
 
 				attemptId = maxAttemptId;
-				let bitmap = ( await jimp.read( await page.screenshot() ) )
+				const bitmap = ( await jimp.read( await page.screenshot() ) )
 					.scale( 1 / viewScale ).quality( jpgQuality )
 					.write( `./examples/screenshots/${ file }.jpg` ).bitmap;
 
@@ -259,9 +259,9 @@ const pup = puppeteer.launch( {
 
 				/* Diff screenshots */
 
-				let actual = ( await jimp.read( await page.screenshot() ) ).scale( 1 / viewScale ).quality( jpgQuality ).bitmap;
-				let expected = ( await jimp.read( fs.readFileSync( `./examples/screenshots/${ file }.jpg` ) ) ).bitmap;
-				let diff = actual;
+				const actual = ( await jimp.read( await page.screenshot() ) ).scale( 1 / viewScale ).quality( jpgQuality ).bitmap;
+				const expected = ( await jimp.read( fs.readFileSync( `./examples/screenshots/${ file }.jpg` ) ) ).bitmap;
+				const diff = actual;
 
 				let numFailedPixels;
 				try {

@@ -25,10 +25,10 @@ for ( var key in files ) {
 
 }
 
-let subES = E.filter( x => ! S.includes( x ) );
-let subSE = S.filter( x => ! E.includes( x ) );
-let subEF = E.filter( x => ! F.includes( x ) );
-let subFE = F.filter( x => ! E.includes( x ) );
+const subES = E.filter( x => ! S.includes( x ) );
+const subSE = S.filter( x => ! E.includes( x ) );
+const subEF = E.filter( x => ! F.includes( x ) );
+const subFE = F.filter( x => ! E.includes( x ) );
 
 console.green = ( msg ) => console.log( `\x1b[32m${ msg }\x1b[37m` );
 console.red = ( msg ) => console.log( `\x1b[31m${ msg }\x1b[37m` );
