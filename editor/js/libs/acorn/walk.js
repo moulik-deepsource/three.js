@@ -109,7 +109,7 @@ function findNodeAt(node, start, end, test, base, state) {
   test = makeTest(test);
   if (!base) base = exports.base;
   try {
-    ;(function c(node, st, override) {
+    (function c(node, st, override) {
       var type = override || node.type;
       if ((start == null || node.start <= start) && (end == null || node.end >= end)) base[type](node, st, c);
       if (test(type, node) && (start == null || node.start == start) && (end == null || node.end == end)) throw new Found(node, st);
@@ -125,7 +125,7 @@ function findNodeAround(node, pos, test, base, state) {
   test = makeTest(test);
   if (!base) base = exports.base;
   try {
-    ;(function c(node, st, override) {
+    (function c(node, st, override) {
       var type = override || node.type;
       if (node.start > pos || node.end < pos) {
         return;
@@ -143,7 +143,7 @@ function findNodeAfter(node, pos, test, base, state) {
   test = makeTest(test);
   if (!base) base = exports.base;
   try {
-    ;(function c(node, st, override) {
+    (function c(node, st, override) {
       if (node.end < pos) {
         return;
       }var type = override || node.type;
